@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-function App() {
+
+const App = () => {
+
+  const person = {
+    name: 'ram',
+    age: 90,
+    read: () => {
+      console.log('ram reading');
+    }
+  };
+
+  const rating = '9.9999';
+  const g = 'sdflksdfkl';
+  const amount = '900';
+  const c = 9 / 0;
+  // console.log(c);
+  // const amTp = Number(amount);
+  // console.log(Number.isFinite(c));
+  // console.log(Number.isInteger(amTp));
+
+  console.log(isNaN(rating));
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+
+
+
+
+
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
