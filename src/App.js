@@ -1,35 +1,19 @@
 import React from 'react'
-
+import { meals } from './dummy/meals'
 
 const App = () => {
 
-  const person = {
-    name: 'ram',
-    age: 90,
-    read: () => {
-      console.log('ram reading');
-    }
-  };
-
-  const rating = '9.9999';
-  const g = 'sdflksdfkl';
-  const amount = '900';
-  const c = 9 / 0;
-  // console.log(c);
-  // const amTp = Number(amount);
-  // console.log(Number.isFinite(c));
-  // console.log(Number.isInteger(amTp));
-
-  console.log(isNaN(rating));
-
-
 
   return (
-    <div>
+    <div className='p-4 grid grid-cols-3 gap-5 '>
 
-
-
-
+      {meals.map((meal, i) => {
+        return <div className='shadow-xl p-2' key={meal.idCategory}>
+          <h1>{meal.strCategory}</h1>
+          <img src={meal.strCategoryThumb} alt="" />
+          <p>{meal.strCategoryDescription.substring(0, 100) + '....'}</p>
+        </div>
+      })}
 
     </div>
   )
