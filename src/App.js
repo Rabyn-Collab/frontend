@@ -1,19 +1,27 @@
 import React from 'react'
-import TableData from './components/TableData'
+
 
 
 const App = () => {
 
+  const fName = 'Ram';
+  const lName = 'Lakhan';
 
+  const greetUser = () => {
+    return 'hello jee namaste jee';
+  }
 
+  const fullNameFunc = () => {
+    return `fullname is ${fName} ${lName}`;
+  }
 
+  const some = fullNameFunc();
+
+  console.log(some);
   return (
     <div>
 
-      <TableData />
-      <TableData />
-      <TableData />
-      <TableData />
+
 
 
     </div>
