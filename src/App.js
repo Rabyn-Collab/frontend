@@ -1,28 +1,19 @@
 import React from 'react'
+import TableData from './components/TableData'
 
 
 const App = () => {
 
 
 
-  const reactangle = {
-    length: 20,
-    width: 200,
-    totalArea: function () {
-      return this.length * this.width;
-    },
-  };
-
-  const totals = reactangle.totalArea();
-
-
-  console.log(totals);
-
 
   return (
     <div>
 
-
+      <TableData />
+      <TableData />
+      <TableData />
+      <TableData />
 
 
     </div>
