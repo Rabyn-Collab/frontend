@@ -1,28 +1,17 @@
 import React from 'react'
+import Header from './components/Header'
+import DisplaySecion from './pages/HomePage/DisplaySecion'
 
 
 
 const App = () => {
 
-  const fName = 'Ram';
-  const lName = 'Lakhan';
 
-  const greetUser = () => {
-    return 'hello jee namaste jee';
-  }
 
-  const fullNameFunc = () => {
-    return `fullname is ${fName} ${lName}`;
-  }
-
-  const some = fullNameFunc();
-
-  console.log(some);
   return (
     <div>
-
-
-
+      <Header />
+      <DisplaySecion />
 
     </div>
   )
