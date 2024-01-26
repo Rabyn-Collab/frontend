@@ -11,6 +11,9 @@ const App = () => {
   return (
     <div>
 
+
+      <h1>helllo jee</h1>
+
       <Header />
       <DisplaySecion />
       <Technologies />
