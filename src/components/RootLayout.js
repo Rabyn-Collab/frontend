@@ -5,7 +5,7 @@ import Header from './Header'
 const RootLayout = () => {
   return (
     <>
-      <h1>askld</h1>
+
       <Header />
       <Outlet />
 
