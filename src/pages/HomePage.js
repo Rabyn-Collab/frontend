@@ -1,5 +1,6 @@
 import React from 'react'
 import CardDisplay from '../components/CardDisplay'
+import UserForm from '../components/UserForm';
 
 const HomePage = () => {
 
@@ -9,13 +10,13 @@ const HomePage = () => {
   return (
     <div className='p-7'>
 
-      <CardDisplay image={image} datas={[11, 22, 44, 55]} />
-      <CardDisplay image={image1} />
+
+      <UserForm />
+      {/* <CardDisplay image={image} datas={[11, 22, 44, 55]} />
+      <CardDisplay image={image1} /> */}
 
 
 
-      <h1>This is a Home Page</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quas beatae, unde deleniti eaque delectus! Quisquam illo ipsam culpa suscipit?</p>
 
 
 
