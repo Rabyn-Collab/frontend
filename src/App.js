@@ -5,8 +5,6 @@ import About from './pages/About'
 import NotFound from './pages/NotFound'
 import RootLayout from './components/RootLayout'
 import ContactPage from './pages/ContactPage'
-import SamplePage from './pages/SamplePage'
-
 
 
 const App = () => {
@@ -18,10 +16,6 @@ const App = () => {
           <Route path='/' element={<HomePage />} />
           <Route path='about' element={<About />} />
           <Route path='contact' element={<ContactPage />} />
-
-
-          <Route path='sample/:id' element={<SamplePage />} />
-
 
           <Route path='*' element={<NotFound />} />
 
