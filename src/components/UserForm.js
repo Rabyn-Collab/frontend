@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
 import { Radio } from "@material-tailwind/react";
 
+
 const UserForm = () => {
 
   const [data, setData] = useState([]);
@@ -104,12 +105,15 @@ const UserForm = () => {
           </div>
 
 
+
+
           <div className='space-y-2'>
             <h1>Select An Image</h1>
 
             <Input
               label="Image File"
               onChange={(e) => {
+                console.log(e.target.files);
                 const file = e.target.files[0];
                 // console.log(e.target.value);
                 const url = URL.createObjectURL(file)
@@ -118,6 +122,7 @@ const UserForm = () => {
               value={formik.values.email}
               type='file'
               name='image'
+              multiple
               accept='image/*'
             />
 
