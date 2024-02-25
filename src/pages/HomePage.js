@@ -1,50 +1,33 @@
-import axios from 'axios'
 import React from 'react'
-import { useEffect } from 'react';
 import { useState } from 'react';
-import { api_key, getPopular, imageUrl } from '../components/constants';
+import { getPopular, imageUrl } from '../components/constants';
+import { useApi } from '../hooks/apiHooks';
 
 const HomePage = () => {
 
-  const [data, setData] = useState(null);
-  const [load, setLoad] = useState(false);
-  const [err, setErr] = useState('');
 
 
+  const [page, setPage] = useState(1);
 
-  const fetchData = async () => {
-    try {
-      setLoad(true);
-      const response = await axios.get(getPopular, {
-        params: {
-          api_key: api_key
-        }
-      });
-      setLoad(false);
-      setData(response.data.results);
-    } catch (err) {
-      setLoad(false);
-      setErr(err.message);
-
-    }
-  }
-
-
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
+  const [load, err, data] = useApi(getPopular, page);
   if (load) {
     return <h1>LoaDING....</h1>;
   }
   // if (err) {
   //   return <h1>{err}</h1>
   // }
-  console.log(data);
+
   return (
     <div>
 
+      <div className="pages space-x-7">
+        <button onClick={() => setPage((prev) => {
+          if (prev > 1) {
+            return prev - 1;
+          }
+        })}>DecrePage</button>
+        <button onClick={() => setPage((prev) => prev + 1)}>IncrePage</button>
+      </div>
       {data && data.map((movie) => {
         return <div key={movie.id}>
           <h1>{movie.title}</h1>
