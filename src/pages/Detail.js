@@ -1,14 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
-const Detail = ({ id, setId }) => {
-  // const person = {
-  //   name: 'rma',
-  //   age: 90
-  // };
-
-  // const {name, age} = person
-
+const Detail = ({ id, closeCompo }) => {
 
   const [movieData, setData] = useState(null);
   const [isLoad, setLoad] = useState(false);
@@ -40,31 +33,37 @@ const Detail = ({ id, setId }) => {
 
 
   useEffect(() => {
-    document.addEventListener('keydown', (e) => {
+
+    const callback = (e) => {
       if (e.key === 'Escape') {
-        setId((prev) => null);
+        console.log('hello jeee');
+        closeCompo();
       }
-    })
+    }
+    //document.addEventListener('keydown', (e) => callback(e));
+    document.addEventListener('keydown', callback);
+
     return () => {
-      console.log('hello jee');
-      document.removeEventListener('keydown', () => {
-        console.log('key function call');
-      })
+      console.log('destroy');
+      document.removeEventListener('keydown', callback)
     }
   }, [])
 
 
   return (
-    <div>
+    <div className='grid grid-cols-4 gap-4'>
 
-      {id === null ? 'Click Some Ids' : <div>
-
+      <div className='col-span-3'>
         <h1 >{movieData?.Title}</h1>
-        <img src={movieData?.Poster} alt="" />
+        <img className='w-full' src={movieData?.Poster} alt="" />
         <p>{movieData?.Plot}</p>
       </div>
 
-      }
+      <div>
+        <button onClick={closeCompo} className='bg-black text-white px-2 py-1'>Close This</button>
+      </div>
+
+
 
 
     </div>
