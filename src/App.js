@@ -5,6 +5,7 @@ import About from './pages/About'
 import NotFound from './pages/NotFound'
 import RootLayout from './components/RootLayout'
 import ContactPage from './pages/ContactPage'
+import ItemsPage from './pages/ItemsPage'
 
 
 const App = () => {
@@ -14,6 +15,8 @@ const App = () => {
       <Routes>
         <Route element={<RootLayout />}>
           <Route path='/' element={<HomePage />} />
+          <Route path='itemPage/:cata' element={<ItemsPage />} />
+
           <Route path='about' element={<About />} />
           <Route path='contact' element={<ContactPage />} />
           <Route path='*' element={<NotFound />} />

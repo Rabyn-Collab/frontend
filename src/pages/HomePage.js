@@ -1,77 +1,42 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import Detail from './Detail';
-import NavBarCompo from './NavBarCompo';
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react"
+import { useNavigate } from "react-router";
 
 const HomePage = () => {
 
+  const [data, setData] = useState([]);
+  const nav = useNavigate();
 
-  const [movieData, setData] = useState(null);
-  const [isLoad, setLoad] = useState(false);
-  const [isErr, setErr] = useState(false);
-  const [id, setId] = useState(null);
-  const [query, setQ] = useState('Avatar');
-
-  const controller = new AbortController();
-
-  const getMovie = async () => {
+  const getCategories = async () => {
     try {
-      const response = await axios.get('http://www.omdbapi.com', {
-        params: {
-          'apikey': '6905a701',
-          's': query
-        },
-        signal: controller.signal
-      });
-      setData(response.data.Search);
+      const response = await axios.get('https://www.themealdb.com/api/json/v1/1/categories.php');
+      setData(response.data.categories);
     } catch (err) {
-      console.log(err);
+
     }
   }
+
+
 
 
   useEffect(() => {
-    if (query.length > 3) {
-      getMovie();
-    }
-
-    return () => {
-      if (query.length > 3) {
-        controller.abort();
-      }
-
-    }
-
-  }, [query])
-
-
-
-  const closeCompo = () => {
-    setId(null);
-  }
+    getCategories();
+  }, []);
 
 
   return (
-    <>
-      <NavBarCompo setQuery={setQ} />
-      <div className='grid grid-cols-2'>
-        <div>
-          {movieData && movieData.map((movie) => {
-            return <div key={movie.imdbID}>
-              <h1>{movie.Title}</h1>
-              <img onClick={() => setId(movie.imdbID)} className='cursor-pointer h-8 w-8' src={movie.Poster} alt="" />
-            </div>
-          })}
+    <div className="p-4">
+      {data.length > 0 && data.map((meal) => {
+        return <div onClick={() => nav(`/itemPage/${meal.strCategory}`)} key={meal.idCategory} className="space-y-2 cursor-pointer">
+          <h1>{meal.strCategory}</h1>
+          <img src={meal.strCategoryThumb} className="h-36 w-36" alt="" />
+
+
         </div>
+      })}
 
-        <div>
-          {id === null ? <h1>You have not clicked</h1> : <Detail id={id} closeCompo={closeCompo} />}
-        </div>
-
-
-      </div>
-    </>
+    </div>
   )
 }
-
 export default HomePage
