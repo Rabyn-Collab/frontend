@@ -27,7 +27,9 @@ const Header = () => {
 
 
       <nav className='space-x-3 msm:hidden'>
-        <NavLink to='/about'>About</NavLink>
+        <NavLink to='/about'
+          className={(e) => e.isActive ? 'text-red-400' : ''}
+        >About</NavLink>
         <NavLink to='/contact'>Contact</NavLink>
         <NavLink to='/sample/900'>Sample</NavLink>
       </nav>
