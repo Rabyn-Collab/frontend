@@ -2,6 +2,14 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react"
 import { useNavigate } from "react-router";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Typography,
+  Button,
+} from "@material-tailwind/react";
 
 const HomePage = () => {
 
@@ -24,16 +32,53 @@ const HomePage = () => {
     getCategories();
   }, []);
 
+  console.log(data);
 
   return (
-    <div className="p-4">
+    <div className="p-4 grid grid-cols-3 gap-5">
       {data.length > 0 && data.map((meal) => {
-        return <div onClick={() => nav(`/itemPage/${meal.strCategory}`)} key={meal.idCategory} className="space-y-2 cursor-pointer">
-          <h1>{meal.strCategory}</h1>
-          <img src={meal.strCategoryThumb} className="h-36 w-36" alt="" />
+        return <Card className="" key={meal.idCategory}>
+          <CardHeader shadow={false} floated={false} >
+            <img
+              src={meal.strCategoryThumb}
+              alt="card-image"
+              className="w-full "
+            />
+          </CardHeader>
+          <CardBody>
+            <div className=" flex items-center justify-between">
+              <Typography color="blue-gray" className="font-medium">
+                {meal.strCategory}
+              </Typography>
+              <Typography color="blue-gray" className="font-medium">
+                {meal.idCategory}
+              </Typography>
+            </div>
+            <Typography
+              variant="small"
+              color="gray"
+              className="font-normal opacity-75"
+            >
+              {meal.strCategoryDescription.substring(0, 150) + '....'}
+            </Typography>
+          </CardBody>
+          <CardFooter className="pt-0">
+            <Button onClick={() => nav(`/itemPage/${meal.strCategory}`)}
+              ripple={false}
+              fullWidth={true}
+              className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+            >
+              Click To Show More
+            </Button>
+          </CardFooter>
+        </Card>
 
 
-        </div>
+
+
+
+
+
       })}
 
     </div>
