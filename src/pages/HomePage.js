@@ -1,31 +1,30 @@
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import HomeChild from "./HomeChild"
 
 const HomePage = () => {
 
-  const [data, setData] = useState(0);
-  const [c, setC] = useState(90);
+  const [n, setN] = useState(0);
+
+  const [show, setSHow] = useState(false);
+
+  const handleClick = useCallback(() => {
+    // console.log('kasjdksad');
+    setSHow(!show);
+  }, [show])
 
 
-  const calculateNumber = useMemo(() => {
-    console.log('run this function');
-    return data * 2;
-  }, [data]);
 
-  // console.log(calculateNumber);
-  // const m = calculateNumber();
-
+  const age = 90;
   console.log('parent render');
   return (
     <div>
-      <h1>Depend On {calculateNumber}</h1>
 
-      <button onClick={() => setData((prev) => prev + 1)}>{data}</button>
+      <button onClick={() => setN(n + 1)}>CountPlus</button>
       <br />
-      <button onClick={() => setC((c) => c + 1)}>Not Realted To Child</button>
 
-      <h1>saldjaslkdjsalkdj</h1>
-      {/* <HomeChild data={data} /> */}
+      <button onClick={handleClick}>CountPlus1</button>
+
+      <HomeChild handleClick={handleClick} />
 
     </div>
   )
