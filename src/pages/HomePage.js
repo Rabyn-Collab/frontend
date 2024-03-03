@@ -16,6 +16,13 @@ const HomePage = () => {
 
   const age = 90;
   console.log('parent render');
+
+  const person = useMemo(() => {
+    return {
+      name: 'ram'
+    };
+  }, [])
+
   return (
     <div>
 
@@ -24,7 +31,7 @@ const HomePage = () => {
 
       <button onClick={handleClick}>CountPlus1</button>
 
-      <HomeChild handleClick={handleClick} />
+      <HomeChild person={person} />
 
     </div>
   )

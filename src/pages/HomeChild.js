@@ -1,7 +1,7 @@
 import { memo } from "react";
 
-const HomeChild = ({ handleClick }) => {
-  console.log('also child render ' + handleClick);
+const HomeChild = ({ person }) => {
+  console.log('also child render ' + person);
   return (
     <div>HomeChild</div>
   )
