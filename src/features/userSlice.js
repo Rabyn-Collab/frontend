@@ -5,13 +5,14 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userSlice = createSlice({
   name: 'userSlice',
   initialState: {
-    userInfo: [],
+    users: ['ram', 'shyam'],
   },
 
   reducers: {
 
     addUser: (state, action) => {
-      state.userInfo = [...state.userInfo, action.payload];
+      console.log(action.payload);
+      state.users = [...state.users, action.payload];
     }
 
 

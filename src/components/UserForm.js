@@ -3,12 +3,21 @@ import { Input, Button, Checkbox, Option, Select, Textarea } from "@material-tai
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
 import { Radio } from "@material-tailwind/react";
-
+import * as Yup from 'yup';
 
 const UserForm = () => {
 
   const [data, setData] = useState([]);
   const nav = useNavigate();
+
+  const userSchema = Yup.object({
+    //email: Yup.string().email('').required('add required'),
+    username: Yup.string().min(5).max(20).required(),
+    image: Yup.mixed().test('fileType', 'invalid image', (e) => {
+
+      return ['image/jpg', 'image/png', 'image/jpeg'].includes(e.type);
+    })
+  });
 
   const formik = useFormik({
 
@@ -29,6 +38,7 @@ const UserForm = () => {
       // resetForm();
       // // nav('/about');
     },
+    //validationSchema: userSchema
 
   });
 
@@ -45,17 +55,21 @@ const UserForm = () => {
 
 
   return (
-    <div>
+    <div className='p-10'>
 
       <form onSubmit={formik.handleSubmit}>
         <div className="w-72 space-y-5">
-          <Input
-            label="Email"
-            onChange={formik.handleChange}
-            value={formik.values.email}
-            type='email'
-            name='email'
-          />
+          <div>
+            <Input
+              label="Email"
+              onChange={formik.handleChange}
+              value={formik.values.email}
+              type='email'
+              name='email'
+            />
+            {/* {formik.errors.email && <h1>{formik.errors.email}</h1>} */}
+          </div>
+
           <Input
             onChange={formik.handleChange}
             value={formik.values.username}
@@ -113,11 +127,16 @@ const UserForm = () => {
             <Input
               label="Image File"
               onChange={(e) => {
-                console.log(e.target.files);
+
                 const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.addEventListener('load', (e) => {
+
+                })
                 // console.log(e.target.value);
-                const url = URL.createObjectURL(file)
-                formik.setFieldValue('image', url);
+                //const url = URL.createObjectURL(file)
+                formik.setFieldValue('image', file);
               }}
               value={formik.values.email}
               type='file'
@@ -125,8 +144,8 @@ const UserForm = () => {
               multiple
               accept='image/*'
             />
-
-            {formik.values.image && <img src={formik.values.image} alt="" />}
+            {formik.errors.image && <h1 className='text-pink-700'>{formik.errors.image}</h1>}
+            {/* {formik.values.image && <img src={formik.values.image} alt="" />} */}
           </div>
 
 

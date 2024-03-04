@@ -8,9 +8,7 @@ import ContactPage from './pages/ContactPage'
 
 
 const App = () => {
-  // const old = ['ram', 'shyam', 'hari'];
 
-  // console.log([...old, 'sita']);
 
 
   return (
