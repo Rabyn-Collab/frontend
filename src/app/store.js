@@ -1,13 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { userSlice } from "../features/userSlice";
+import { songSlice } from "../features/songSlice";
 
 
 export const store = configureStore({
   reducer: {
-    userInfo: userSlice.reducer
+    songs: songSlice.reducer
   }
 });
 
 
+
+// console.log(songSlice.actions.addSong());
+store.dispatch({
+  type: 'song/addSong',
+  payload: 'lio'
+});
+
 // console.log(store.getState());
+
 
