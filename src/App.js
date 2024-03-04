@@ -11,12 +11,16 @@ const App = () => {
   // const old = ['ram', 'shyam', 'hari'];
 
   // console.log([...old, 'sita']);
+
+
   return (
     <>
 
       <Routes>
         <Route element={<RootLayout />}>
+
           <Route path='/' element={<HomePage />} />
+
           <Route path='about' element={<About />} />
           <Route path='contact' element={<ContactPage />} />
 
