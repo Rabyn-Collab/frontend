@@ -4,20 +4,20 @@ import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
 import { Radio } from "@material-tailwind/react";
 import * as Yup from 'yup';
-
 const UserForm = () => {
 
-  const [data, setData] = useState([]);
   const nav = useNavigate();
 
   const userSchema = Yup.object({
-    //email: Yup.string().email('').required('add required'),
+    email: Yup.string().matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, 'please provide valid mail').required('add required').test('', '', (e) => {
+
+    }),
     username: Yup.string().min(5).max(20).required(),
     image: Yup.mixed().test('fileType', 'invalid image', (e) => {
-
-      return ['image/jpg', 'image/png', 'image/jpeg'].includes(e.type);
+      return e && ['image/jpg', 'image/png', 'image/jpeg'].includes(e.type);
     })
   });
+
 
   const formik = useFormik({
 
@@ -27,8 +27,7 @@ const UserForm = () => {
       subject: '',
       habits: [],
       country: '',
-      msg: '',
-      image: ''
+      msg: ''
     },
 
     onSubmit: (val, { resetForm }) => {
@@ -38,7 +37,7 @@ const UserForm = () => {
       // resetForm();
       // // nav('/about');
     },
-    //validationSchema: userSchema
+    validationSchema: userSchema
 
   });
 
@@ -51,7 +50,6 @@ const UserForm = () => {
     { label: 'Sing', value: 'sing', color: 'blue' },
     { label: 'Read', value: 'read', color: 'green' },
   ];
-
 
 
   return (
@@ -67,15 +65,22 @@ const UserForm = () => {
               type='email'
               name='email'
             />
-            {/* {formik.errors.email && <h1>{formik.errors.email}</h1>} */}
+            {formik.errors.email && formik.touched.email && <h1>{formik.errors.email}</h1>}
           </div>
 
-          <Input
-            onChange={formik.handleChange}
-            value={formik.values.username}
-            label="Username"
-            name='username'
-          />
+
+          <div>
+            <Input
+              onChange={formik.handleChange}
+              value={formik.values.username}
+              label="Username"
+              name='username'
+            />
+
+            {formik.errors.username && formik.touched.username && <h1>{formik.errors.username}</h1>}
+          </div>
+
+
 
           <div className="rads">
             <h1>Choose Fav Subjects</h1>
@@ -117,38 +122,6 @@ const UserForm = () => {
           <div className="w-96">
             <Textarea label="Message" name='msg' value={formik.values.msg} onChange={formik.handleChange} />
           </div>
-
-
-
-
-          <div className='space-y-2'>
-            <h1>Select An Image</h1>
-
-            <Input
-              label="Image File"
-              onChange={(e) => {
-
-                const file = e.target.files[0];
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.addEventListener('load', (e) => {
-
-                })
-                // console.log(e.target.value);
-                //const url = URL.createObjectURL(file)
-                formik.setFieldValue('image', file);
-              }}
-              value={formik.values.email}
-              type='file'
-              name='image'
-              multiple
-              accept='image/*'
-            />
-            {formik.errors.image && <h1 className='text-pink-700'>{formik.errors.image}</h1>}
-            {/* {formik.values.image && <img src={formik.values.image} alt="" />} */}
-          </div>
-
-
 
           <Button type='submit' size='sm'>Submit</Button>
         </div>

@@ -5,10 +5,12 @@ import About from './pages/About'
 import NotFound from './pages/NotFound'
 import RootLayout from './components/RootLayout'
 import ContactPage from './pages/ContactPage'
+import { useSelector } from 'react-redux'
 
 
 const App = () => {
 
+  const somes = useSelector((state) => state.userInfo);
 
 
   return (
