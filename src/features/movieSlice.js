@@ -1,23 +1,20 @@
-
-
-
-
 import { createSlice } from "@reduxjs/toolkit";
 import { reset } from "./commonAction";
 
 
-export const songSlice = createSlice({
-  name: 'song',
+export const movieSlice = createSlice({
+  name: 'movie',
   initialState: [],
   reducers: {
-    addSong: (state, action) => {
+    addMovie: (state, action) => {
+      console.log('lo');
       state.push(action.payload);
     },
 
-    removeSong: (state, action) => {
+    removeMovie: (state, action) => {
       const index = state.indexOf(action.payload);
       state.splice(index, 1);
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(reset, (state, action) => {
@@ -26,7 +23,4 @@ export const songSlice = createSlice({
   }
 });
 
-export const { addSong, removeSong } = songSlice.actions;
-
-// console.log(songSlice.actions.addSong());
-
+export const { addMovie, removeMovie } = movieSlice.actions;

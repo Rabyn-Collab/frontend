@@ -1,28 +1,16 @@
-import { useSelector } from "react-redux";
-import UserForm from "../components/UserForm";
-
+import { useDispatch } from "react-redux"
+import MovieList from "./MovieList"
+import SongList from "./SongList"
+import { reset } from "../features/commonAction";
 
 const HomePage = () => {
-  let x = [];
-  let y = x;
-
-  y = 90;
-
-  console.log(x);
-
-  // let x = 9;
-  // let y = x;
-  // y = 20;
-
-  console.log(x);
-
-  // console.log(useSelector((state) => state))
-
+  const dispatch = useDispatch();
   return (
-    <div>
+    <div className="p-5 space-y-5">
 
-
-
+      <button onClick={() => dispatch(reset())} className="bg-red-500 text-white px-2 py-1">Reset PlayLists</button>
+      <SongList />
+      <MovieList />
 
 
     </div>
