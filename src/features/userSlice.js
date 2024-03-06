@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { reset } from "./postSlice";
 
 
 
@@ -11,11 +12,16 @@ export const userSlice = createSlice({
   reducers: {
 
     addUser: (state, action) => {
-      console.log(action.payload);
       state.users = [...state.users, action.payload];
-    }
+    },
 
 
+
+  },
+  extraReducers: (builder) => {
+    builder.addCase(reset, (state, action) => {
+      state.users = [];
+    })
   }
 
 });

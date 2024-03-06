@@ -4,18 +4,32 @@ import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
 import { Radio } from "@material-tailwind/react";
 import * as Yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from '@reduxjs/toolkit';
+import { addUser } from '../features/userSlice';
+
+
+
 const UserForm = () => {
+  const dispatch = useDispatch();
+  const { users } = useSelector((state) => state.userInfo);
+
+  console.log(users);
 
   const nav = useNavigate();
 
   const userSchema = Yup.object({
-    email: Yup.string().matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, 'please provide valid mail').required('add required').test('', '', (e) => {
+    // email: Yup.string().matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, 'please provide valid mail').required('add required').test('', '', (e) => {
 
-    }),
-    username: Yup.string().min(5).max(20).required(),
+    // }),
+    // username: Yup.string().min(5).max(20).required(),
     image: Yup.mixed().test('fileType', 'invalid image', (e) => {
-      return e && ['image/jpg', 'image/png', 'image/jpeg'].includes(e.type);
-    })
+      return e && ['image/jpg', 'image/png', 'image/jpeg', 'image/webp'].includes(e.type);
+    }),
+    // subject: Yup.string().required(),
+    // habits: Yup.array().min(1).required(),
+    // country: Yup.string().required(),
+    // msg: Yup.string().min(10).max(200).required()
   });
 
 
@@ -27,15 +41,24 @@ const UserForm = () => {
       subject: '',
       habits: [],
       country: '',
-      msg: ''
+      msg: '',
+      image: null,
+      imageRev: ""
     },
 
     onSubmit: (val, { resetForm }) => {
-      console.log(val);
 
-      // setData((prev) => [...prev, val]);
-      // resetForm();
-      // // nav('/about');
+      dispatch(addUser({
+        email: val.email,
+        username: val.username,
+        subject: val.subject,
+        habits: val.habits,
+        country: val.country,
+        msg: val.msg,
+        imageRev: val.imageRev,
+        id: nanoid()
+      }));
+
     },
     validationSchema: userSchema
 
@@ -94,6 +117,7 @@ const UserForm = () => {
               })}
 
             </div>
+            {formik.errors.subject && formik.touched.subject && <h1>{formik.errors.subject}</h1>}
           </div>
           <div className="habs">
             <h1>Your Habits</h1>
@@ -107,6 +131,7 @@ const UserForm = () => {
               })}
 
             </div>
+            {formik.errors.habits && formik.touched.habits && <h1>{formik.errors.habits}</h1>}
           </div>
 
           <div className="flex w-72 flex-col gap-6">
@@ -115,16 +140,38 @@ const UserForm = () => {
               <Option value='india'>India</Option>
               <Option value='china'>China</Option>
             </Select>
+            {formik.errors.country && formik.touched.country && <h1>{formik.errors.country}</h1>}
           </div>
 
 
 
           <div className="w-96">
             <Textarea label="Message" name='msg' value={formik.values.msg} onChange={formik.handleChange} />
+            {formik.errors.msg && formik.touched.msg && <h1>{formik.errors.msg}</h1>}
           </div>
 
+
+
+          <Input
+            onChange={(e) => {
+              const file = e.target.files[0];
+              formik.setFieldValue('image', file);
+              const reader = new FileReader();
+              reader.readAsDataURL(file);
+              reader.addEventListener('load', (e) => {
+                formik.setFieldValue('imageRev', e.target.result);
+              });
+            }}
+            label="Select An Image"
+            name='image'
+            type='file'
+          />
+          {formik.values.imageRev && <img src={formik.values.imageRev} alt="" />}
+          {formik.errors.image && formik.touched.image && <h1>{formik.errors.image}</h1>}
           <Button type='submit' size='sm'>Submit</Button>
         </div>
+
+
 
 
 
