@@ -7,6 +7,7 @@ export const userSlice = createSlice({
   name: 'userSlice',
   initialState: {
     users: [],
+    user: {}
   },
 
   reducers: {
@@ -15,7 +16,13 @@ export const userSlice = createSlice({
       state.users = [...state.users, action.payload];
     },
 
+    updateUser: (state, action) => {
+      state.users = state.users.map((user) => user.id === action.payload.id ? action.payload : user);
+    },
 
+    singleUser: (state, action) => {
+      state.user = state.users.find((user) => user.id === action.payload);
+    },
 
   },
   extraReducers: (builder) => {
@@ -25,6 +32,6 @@ export const userSlice = createSlice({
   }
 
 });
-export const { addUser } = userSlice.actions;
+export const { addUser, singleUser, updateUser } = userSlice.actions;
 
 

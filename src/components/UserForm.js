@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
 import { Radio } from "@material-tailwind/react";
 import * as Yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { addUser } from '../features/userSlice';
 
@@ -12,24 +12,20 @@ import { addUser } from '../features/userSlice';
 
 const UserForm = () => {
   const dispatch = useDispatch();
-  const { users } = useSelector((state) => state.userInfo);
-
-  console.log(users);
 
   const nav = useNavigate();
 
   const userSchema = Yup.object({
-    // email: Yup.string().matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, 'please provide valid mail').required('add required').test('', '', (e) => {
-
-    // }),
-    // username: Yup.string().min(5).max(20).required(),
+    // email: Yup.string().matches(/^[a-z\s]{0,255}$/i, 'please provide valid mail').required('add required'),
+    email: Yup.string().matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, 'please provide valid mail').required('add required'),
+    username: Yup.string().min(5).max(20).required(),
     image: Yup.mixed().test('fileType', 'invalid image', (e) => {
       return e && ['image/jpg', 'image/png', 'image/jpeg', 'image/webp'].includes(e.type);
     }),
-    // subject: Yup.string().required(),
-    // habits: Yup.array().min(1).required(),
-    // country: Yup.string().required(),
-    // msg: Yup.string().min(10).max(200).required()
+    subject: Yup.string().required(),
+    habits: Yup.array().min(1).required(),
+    country: Yup.string().required(),
+    msg: Yup.string().min(10).max(200).required()
   });
 
 
@@ -59,8 +55,10 @@ const UserForm = () => {
         id: nanoid()
       }));
 
+      nav(-1);
+
     },
-    validationSchema: userSchema
+    validationSchema: userSchema,
 
   });
 
@@ -86,9 +84,10 @@ const UserForm = () => {
               onChange={formik.handleChange}
               value={formik.values.email}
               type='email'
+
               name='email'
             />
-            {formik.errors.email && formik.touched.email && <h1>{formik.errors.email}</h1>}
+            {formik.errors.email && formik.touched.username && <h1>{formik.errors.email}</h1>}
           </div>
 
 
