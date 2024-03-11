@@ -1,13 +1,10 @@
 import React from 'react'
 import { Route, Routes } from 'react-router'
 import HomePage from './pages/HomePage'
-import About from './pages/About'
 import NotFound from './pages/NotFound'
 import RootLayout from './components/RootLayout'
-import ContactPage from './pages/ContactPage'
 import { useSelector } from 'react-redux'
-import UserForm from './components/UserForm'
-import EditForm from './components/EditForm'
+
 
 
 const App = () => {
@@ -33,11 +30,9 @@ const App = () => {
         <Route element={<RootLayout />}>
 
           <Route path='/' element={<HomePage />} />
-          <Route path='addForm' element={<UserForm />} />
-          <Route path='editForm/:id' element={<EditForm />} />
 
-          <Route path='about' element={<About />} />
-          <Route path='contact' element={<ContactPage />} />
+
+
 
           <Route path='*' element={<NotFound />} />
 
