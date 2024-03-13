@@ -1,36 +1,27 @@
-import { imageUrl } from "../app/apis_cre.";
+import { getNowPlaying, imageUrl } from "../app/apis_cre.";
+import MovieList from "../components/MovieList";
 import SkeletonCompo from "../components/SkeletonCompo";
 
 import { useCategoryMovieQuery } from "../features/movieApi"
 
 const HomePage = () => {
 
-  const { isLoading, data, isError, error } = useCategoryMovieQuery();
+
+  const { isLoading, data, isError, error } = useCategoryMovieQuery(getNowPlaying);
 
   if (isLoading) {
     return <SkeletonCompo />
   }
 
 
+
+
+
   return (
-    <div className="p-4 grid grid-cols-4 gap-5">
+    <>
+      <MovieList isLoading={isLoading} data={data} isError={isError} error={error} />
 
-      {data && data.results.map((movie) => {
-        return <div key={movie.id} className="shadow-2xl hover:scale-95 duration-300 delay-100 transition-all cursor-pointer">
-          <img src={`${imageUrl}${movie.poster_path}`} alt="" />
-          <div className="p-3 space-y-1">
-            <h1 className="font-bold text-xl">{movie.title}</h1>
-            <p>{movie.overview.substring(0, 100) + '....'}</p>
-          </div>
-
-
-        </div>
-      })}
-
-
-
-
-    </div>
+    </>
   )
 
 

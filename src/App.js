@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import NotFound from './pages/NotFound'
 import RootLayout from './components/RootLayout'
 import { useSelector } from 'react-redux'
+import CategoryPage from './pages/CategoryPage'
 
 
 
@@ -30,9 +31,7 @@ const App = () => {
         <Route element={<RootLayout />}>
 
           <Route path='/' element={<HomePage />} />
-
-
-
+          <Route path='/movie/:category' element={<CategoryPage />} />
 
           <Route path='*' element={<NotFound />} />
 

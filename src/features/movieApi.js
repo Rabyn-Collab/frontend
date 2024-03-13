@@ -17,10 +17,15 @@ export const movieApi = createApi({
 
     categoryMovie: builder.query({
       query: (query) => ({
-        url: '/movie/popular',
+        url: query,
+        params: {
+
+        },
         method: 'GET'
       })
     }),
+
+
 
 
 

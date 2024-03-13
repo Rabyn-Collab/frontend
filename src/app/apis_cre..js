@@ -8,3 +8,8 @@ export const credential = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MmMxZTMzZjAxN
 export const baseUrl = 'https://api.themoviedb.org/3';
 
 export const imageUrl = 'https://image.tmdb.org/t/p/w500';
+
+export const getPopular = '/movie/popular';
+export const getTopRated = '/movie/top_rated';
+export const getUpComing = '/movie/upcoming';
+export const getNowPlaying = '/movie/now_playing';
