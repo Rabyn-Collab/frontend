@@ -9,7 +9,7 @@ export const baseUrl = 'https://api.themoviedb.org/3';
 
 export const imageUrl = 'https://image.tmdb.org/t/p/w500';
 
-export const getPopular = '/movie/popular';
-export const getTopRated = '/movie/top_rated';
-export const getUpComing = '/movie/upcoming';
-export const getNowPlaying = '/movie/now_playing';
+export const getPopular = 'popular';
+export const getTopRated = 'top_rated';
+export const getUpComing = 'upcoming';
+export const getNowPlaying = 'now_playing';

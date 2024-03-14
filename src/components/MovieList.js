@@ -1,9 +1,9 @@
 import { imageUrl } from "../app/apis_cre."
 import SkeletonCompo from "./SkeletonCompo"
 
-const MovieList = ({ data, isLoading, isError, error }) => {
+const MovieList = ({ data, isLoading, isError, error, isFetching }) => {
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return <SkeletonCompo />
   }
 

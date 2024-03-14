@@ -16,7 +16,7 @@ const NavList = () => {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <NavLink to={getPopular} className=" hover:text-blue-500">Popular</NavLink>
+        <NavLink to={`/movie/category/${getPopular}`} className=" hover:text-blue-500">Popular</NavLink>
       </Typography>
       <Typography
 
@@ -24,7 +24,7 @@ const NavList = () => {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <NavLink to={getTopRated} className=" hover:text-blue-500">TopRated</NavLink>
+        <NavLink to={`/movie/category/${getTopRated}`} className=" hover:text-blue-500">TopRated</NavLink>
       </Typography>
 
 
@@ -34,7 +34,7 @@ const NavList = () => {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <NavLink to={getUpComing} className=" hover:text-blue-500">UpComing</NavLink>
+        <NavLink to={`/movie/category/${getUpComing}`} className=" hover:text-blue-500">UpComing</NavLink>
 
       </Typography>
 
