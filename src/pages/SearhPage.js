@@ -6,8 +6,6 @@ const SearhPage = () => {
   const { query } = useParams();
 
   const { isLoading, data, isError, error, isFetching } = useSearchMovieQuery(query);
-
-  console.log('sealksjdsalk');
   return (
     <>
 

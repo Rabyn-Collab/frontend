@@ -6,6 +6,7 @@ import RootLayout from './components/RootLayout'
 import { useSelector } from 'react-redux'
 import CategoryPage from './pages/CategoryPage'
 import SearhPage from './pages/SearhPage'
+import Popular from './pages/Popular'
 
 
 
@@ -32,8 +33,11 @@ const App = () => {
         <Route element={<RootLayout />}>
 
           <Route path='/' element={<HomePage />} />
+          <Route path='popular/movie' element={<Popular />} />
           <Route path='movie/category/:category' element={<CategoryPage />} />
-          <Route path='/movie/search/:query' element={<SearhPage />} />
+
+
+          <Route path='movie/search/:query' element={<SearhPage />} />
 
           <Route path='*' element={<NotFound />} />
 

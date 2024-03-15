@@ -21,8 +21,10 @@ export const movieApi = createApi({
         params: {
 
         },
-        method: 'GET'
-      })
+        method: 'GET',
+
+
+      }),
     }),
 
 
