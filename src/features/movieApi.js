@@ -22,13 +22,29 @@ export const movieApi = createApi({
 
         },
         method: 'GET',
-
-
       }),
     }),
 
 
+    movieDetail: builder.query({
+      query: (query) => ({
+        url: `/movie/${query}`,
+        params: {
 
+        },
+        method: 'GET',
+      }),
+    }),
+
+    movieVideo: builder.query({
+      query: (query) => ({
+        url: `/movie/${query}/videos`,
+        params: {
+
+        },
+        method: 'GET',
+      }),
+    }),
 
 
     searchMovie: builder.query({
@@ -49,4 +65,5 @@ export const movieApi = createApi({
 });
 
 
-export const { useCategoryMovieQuery, useSearchMovieQuery } = movieApi;
+export const { useCategoryMovieQuery,
+  useSearchMovieQuery, useMovieDetailQuery, useMovieVideoQuery } = movieApi;
