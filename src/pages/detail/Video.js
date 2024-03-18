@@ -8,7 +8,7 @@ const Video = ({ id }) => {
   }
 
   return (
-    <div className="w-full absolute top-0 ">
+    <div className="w-full mt-10 ">
       {data && <iframe
         className="w-[50%] h-[300px]"
         allowFullScreen

@@ -12,7 +12,7 @@ const CategoryPage = ({ cat }) => {
     isError,
     error,
     isFetching
-  } = useCategoryMovieQuery(cat ?? category, {
+  } = useCategoryMovieQuery(cat ?? { category: category }, {
     // pollingInterval: 3000
   });
 

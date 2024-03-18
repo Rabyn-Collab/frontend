@@ -17,9 +17,9 @@ export const movieApi = createApi({
 
     categoryMovie: builder.query({
       query: (query) => ({
-        url: `/movie/${query}`,
+        url: `/movie/${query.category}`,
         params: {
-
+          page: query.page ?? 1
         },
         method: 'GET',
       }),

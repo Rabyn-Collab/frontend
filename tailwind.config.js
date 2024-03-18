@@ -6,7 +6,21 @@ module.exports = withMT({
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+
+    extend: {
+
+      colors: {
+        purp: 'purple'
+      },
+      backgroundColor: {
+
+      },
+      backgroundImage: {
+        'hero-back': "url('/images/barbie.jpg')"
+      }
+    },
+
+
     screens: {
       'm2xl': { 'max': '1536px' },
       'mxl': { 'max': '1280px' },

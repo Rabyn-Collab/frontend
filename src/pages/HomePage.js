@@ -9,7 +9,7 @@ const HomePage = () => {
 
 
 
-  const { isLoading, data, isError, error } = useCategoryMovieQuery(getNowPlaying);
+  const { isLoading, data, isError, error } = useCategoryMovieQuery({ category: getNowPlaying });
 
 
   if (isLoading) {
@@ -26,7 +26,7 @@ const HomePage = () => {
       <div style={{ backgroundImage: "url('/images/barbie.jpg')" }} className="w-full h-[350px] flex flex-col justify-center px-11 bg-cover bg-no-repeat" >
 
         <div className="mb-5">
-          <h1 className="text-white font-bold text-[2.5rem]">Welcome .</h1>
+          <h1 className="text-white font-bold  text-[2.5rem]">Welcome .</h1>
           <p className="text-white font-bold text-2xl">
             Millions of movies, TV shows and people to discover. Explore now.
           </p>

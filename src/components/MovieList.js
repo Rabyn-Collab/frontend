@@ -14,7 +14,6 @@ const MovieList = ({ data, isLoading, isError, error, isFetching }) => {
   }
 
 
-  console.log(data);
   return (
     <div className="p-4 grid grid-cols-4 gap-x-5 gap-y-6">
 
