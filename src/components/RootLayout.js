@@ -5,12 +5,12 @@ import Header from './Header'
 
 const RootLayout = () => {
   return (
-    <>
+    <div className='flex flex-col min-h-screen'>
 
       <Header />
       <Outlet />
 
-    </>
+    </div>
   )
 }
 

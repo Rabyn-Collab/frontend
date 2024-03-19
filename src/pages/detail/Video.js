@@ -8,11 +8,11 @@ const Video = ({ id }) => {
   }
 
   return (
-    <div className="w-full mt-10 ">
+    <div className=" ">
       {data && <iframe
         className="w-[50%] h-[300px]"
         allowFullScreen
-        src={`https://www.youtube.com/embed/${data?.results[0]?.key}`} frameborder="0"></iframe>}
+        src={`https://www.youtube.com/embed/${data?.results[0]?.key}`} ></iframe>}
 
     </div >
   )
