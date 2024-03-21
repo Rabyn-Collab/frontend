@@ -15,7 +15,7 @@ const MovieList = ({ data, isLoading, isError, error, isFetching }) => {
 
 
   return (
-    <div className="p-4 grid grid-cols-4 gap-x-5 gap-y-6">
+    <div className="p-4 grid grid-cols-4 msm:grid-cols-2 mmd:grid-cols-3 msm:text-lg gap-x-5 gap-y-6">
 
       {data && data?.results.length === 0 ?
         <h1 className="col-span-4"> There are no movies that matched your query.</h1> : data?.results.map((movie) => {
